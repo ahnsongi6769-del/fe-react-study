@@ -84,12 +84,22 @@ function NewsBlog() {
                     setInputText(event.target.value);
                 }}/>
                 <button onClick={()=>{
+                    inputText = inputText.trim(); // 앞뒤공백 제거
+                    //setInputText(inputText.trim()); // 랜더링 되면서 앞뒤공백제거
+
+                    if(inputText == '') {
+                        alert('값을 입력하세요')
+                        setInputText('');
+                            return;
+                        
+                    }
 
                     let temp = [...news];
                     temp.push(inputText);
                     likeCountArr.push(0)
                     setNews(temp);
                     setInputText('');
+
                     //input창에 입력된 value를 -> news 배열 뒤에 push 추가
 
                     // html css js 스타일

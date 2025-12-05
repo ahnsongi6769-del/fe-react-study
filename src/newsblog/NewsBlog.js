@@ -21,6 +21,7 @@ function NewsBlog() {
 
     let [selectedTitle, setSelectedTitle] = useState('');
     let [selectedLikeCount, setSelectedLikeCount] = useState(0);
+    let [inputText,setInputText] =useState('');
 
     return (
         <div>
@@ -70,16 +71,41 @@ function NewsBlog() {
                 /* modalFlag == true ? <Modal/> : null */
             }
 
-            <button onClick={()=>{
+            <button onClick={() => {
                 //'Today News'
                 let temp = [...news];
                 temp[0] = 'Today News';
                 setNews(temp);
             }}>첫글 제목 변경</button>
+            <div>
+                <input type='text' id = "input_news_title" value={inputText} onChange={(event)=>{
+                    //console.log(event);
+                    console.log(event.target.value);
+                    setInputText(event.target.value);
+                }}/>
+                <button onClick={()=>{
+
+                    let temp = [...news];
+                    temp.push(inputText);
+                    likeCountArr.push(0)
+                    setNews(temp);
+                    setInputText('');
+                    //input창에 입력된 value를 -> news 배열 뒤에 push 추가
+
+                    // html css js 스타일
+                    // let title = document.getElementById('input_news_title').value;
+
+                    // let temp = [...news];
+                    // temp.push(title);
+                    // setNews(temp);
+
+                    // document.getElementById('input_news_title').value = '';
+                }}>발행</button>
+            </div>
 
             {
                 modalFlag && <Modal news={news} setNews={setNews} bgColor={'lightblue'}
-                            title={selectedTitle} likeCount={selectedLikeCount} />
+                    title={selectedTitle} likeCount={selectedLikeCount} />
             }
 
         </div>

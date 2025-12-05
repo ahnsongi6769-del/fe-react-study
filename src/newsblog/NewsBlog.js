@@ -21,7 +21,7 @@ function NewsBlog() {
 
     let [selectedTitle, setSelectedTitle] = useState('');
     let [selectedLikeCount, setSelectedLikeCount] = useState(0);
-    let [inputText,setInputText] =useState('');
+    let [inputText, setInputText] = useState('');
 
     return (
         <div>
@@ -48,7 +48,14 @@ function NewsBlog() {
                                     setLikeCountArr(temp);
                                 }}> ❤</span> {likeCountArr[index]}
                             </h4>
-                            <p>내용</p>
+                            <p>내용 무 </p>
+                            <button onClick={() => {
+                                news.splice([index], 1)
+                                let temp = [...news]
+                                setNews(temp); // 리랜더링을 해야해서 사용해야함 !
+                                likeCountArr.splice(index,1)
+
+                            }}>삭제</button>
                         </div>
                     )
                 })
@@ -78,20 +85,20 @@ function NewsBlog() {
                 setNews(temp);
             }}>첫글 제목 변경</button>
             <div>
-                <input type='text' id = "input_news_title" value={inputText} onChange={(event)=>{
+                <input type='text' id="input_news_title" value={inputText} onChange={(event) => {
                     //console.log(event);
                     console.log(event.target.value);
                     setInputText(event.target.value);
-                }}/>
-                <button onClick={()=>{
+                }} />
+                <button onClick={() => {
                     inputText = inputText.trim(); // 앞뒤공백 제거
                     //setInputText(inputText.trim()); // 랜더링 되면서 앞뒤공백제거
 
-                    if(inputText == '') {
+                    if (inputText == '') {
                         alert('값을 입력하세요')
                         setInputText('');
-                            return;
-                        
+                        return;
+
                     }
 
                     let temp = [...news];

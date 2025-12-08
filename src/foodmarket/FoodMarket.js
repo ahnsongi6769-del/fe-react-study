@@ -14,23 +14,39 @@ import food3 from './img/food3.jpg';
 import foodsData from './data/foodsDate';
 import { useState } from 'react';
 import FoodCard from './components/FoodCard';
+import Home from './pages/Home';
+import { Routes, Route, Link, useNavigate } from 'react-router';
+import CostomerService from './pages/CostomerService';
 
 function FoodMarket() {
 
     let [foods, setfoods] = useState(foodsData);
 
+    let navigate = useNavigate();
+
     return (
+
         <div>
             <Navbar bg="light" data-bs-theme="light">
                 <Container>
-                    <Navbar.Brand href="#home">FoodMarket</Navbar.Brand>
+                    <Navbar.Brand onClick={()=>{ navigate("/")}}>FoodMarket</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <Nav.Link href="#home"><Link to="/">Home</Link></Nav.Link>
+                        <Nav.Link onClick={() => { navigate("/detail") }}>FoodDetail</Nav.Link>
+                        <Nav.Link onClick={() => { navigate("/info") }}>Info</Nav.Link>
+                        <Nav.Link onClick={() => { navigate("/help") }}>고객센터</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
+
+            <Routes>
+                <Route path="/" element={<Home foods={foods} />}></Route>
+                <Route path="/detail" element={<div><h1>detail page</h1></div>}></Route>
+                <Route path="/info" element={<div><h1>info page</h1></div>}></Route>
+                <Route path="/help" element={<CostomerService/>}></Route>
+            </Routes>
+
+
 
             {/* 
                 javascript 이미지 사용 
@@ -42,23 +58,6 @@ function FoodMarket() {
                 3. public 폴더에 이미지 저장 후 사용 할 때
                 <img src ={'/images/food1.jpg}
             */}
-            <div className='main-bg' style={{ backgroundImage: 'url(' + banner_bg + ')' }}></div>
-            {/* <div className='main-bg'></div> */}
-
-            <Container>
-                <Row>
-                    {
-                        foods.map((food, index) => {
-                            return (<Col md={4} sm={2}>
-                                <FoodCard food={food} foods={foods} index={index} />
-                            </Col>)
-                        })
-                    }
-
-                </Row>
-            </Container>
-
-
 
             {/* <Container>
                 <Row>

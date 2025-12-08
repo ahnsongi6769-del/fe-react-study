@@ -11,6 +11,10 @@ import Props02 from './components/Props02';
 import Quiz02 from './quiz/quiz02/Quiz02';
 import Quiz03 from './quiz/quiz03/Quiz03';
 import NewsBlog from './newsblog/NewsBlog';
+import Quiz04 from './quiz/quiz04/Quiz04';
+import Quiz05 from './quiz/quiz05/Quiz05';
+import Quiz05_1 from './quiz/quiz05/Quiz05_1';
+import FoodMarket from './foodmarket/FoodMarket';
 
 
 function App() {
@@ -25,7 +29,10 @@ function App() {
   //return <Props02/>
   //return <Quiz02/>
   //return <Quiz03/>
-  return  <NewsBlog/>
+  //return  <NewsBlog/>
+  //return <Quiz04/>
+  //return <Quiz05_1/>
+  return <FoodMarket/>
 
   // return (
   //   <div className="App">

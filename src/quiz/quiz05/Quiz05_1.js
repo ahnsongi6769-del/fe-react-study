@@ -1,8 +1,9 @@
 import './Quiz05.css'
 import { useState } from 'react';
+import ColorBox from './ColorBox';
 
 
-function Quiz05() {
+function Quiz05_1() {
 
     let [arr, setArr] = useState([1, 2, 3, 4])
 
@@ -58,22 +59,24 @@ function Quiz05() {
 
 
             {
-                arr.map((item) => {
+                arr.map((item,index) => {
 
                     if (item == 1) {
-                        return <div style={{ backgroundColor: 'red' }} className='box'></div>
+                        return <ColorBox arr={arr} setArr={setArr} index={index} bgColor='red'/>
                     } else if (item == 2) {
-                        return <div style={{ backgroundColor: 'blue' }} className='box'></div>
+                        return <ColorBox arr={arr} setArr={setArr} index={index} bgColor='blue'/>
                     } else if (item == 3) {
-                        return <div style={{ backgroundColor: 'green' }} className='box'></div>
+                        return <ColorBox arr={arr} setArr={setArr} index={index} bgColor='green'/>
                     } else {
-                        return <div style={{ backgroundColor: 'black' }} className='box'></div>
+                        return <ColorBox  arr={arr} setArr={setArr} index={index} bgColor='black'/>
                     }
                 })
+
+                
             }
 
         </div>
     )
 }
 
-export default Quiz05;
+export default Quiz05_1;

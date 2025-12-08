@@ -64,6 +64,7 @@ function Quiz05() {
                     //return <div className='box' style={{ backgroundColor: item }}></div>
                 })
             }
+                return ColorBox button
 
         </div>
     )

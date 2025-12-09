@@ -10,7 +10,7 @@ function Detail({ foods }) {
 
     let [viewStatus, setViewStatus] = useState('');
 
-    let [modalShow,setModalShow] = useState(true); // 모달창 표시 여부 
+    let [modalShow, setModalShow] = useState(true); // 모달창 표시 여부 
 
     // path="/detail/:productNumber"
     // let { productNumber } = useParams(); //경로에 있는 값 읽어오기
@@ -66,11 +66,11 @@ function Detail({ foods }) {
     }, [])
 
     //modal 창 안보이게 적용
-    useEffect(()=>{
+    useEffect(() => {
         //modal show  true -> false 2초
-        let tmout = setTimeout(()=>{
+        let tmout = setTimeout(() => {
             setModalShow(false);
-        },2000); // ms 2초
+        }, 2000); // ms 2초
 
         //setTimeout
         //setInterval
@@ -78,10 +78,10 @@ function Detail({ foods }) {
 
         //clearInterval
         //clearTimeout
-        return()=>{
+        return () => {
             clearTimeout(tmout);
         }
-    },[])
+    }, [])
 
 
     if (food == undefined || food == null) {
@@ -92,6 +92,7 @@ function Detail({ foods }) {
             </div>
         )
     }
+
 
 
     return (
@@ -105,27 +106,38 @@ function Detail({ foods }) {
                     <p>{food.content}</p>
                     <p>{food.price}</p>
                     <p>
+
                         <Button variant="dark" onClick={() => {
-                            setOrderCount(orderCount - 1);
+                            // {
+                            //     orderCount <= 0 ? orderCount = 0 :
+                            //         setOrderCount(orderCount - 1)
+                            // }
+                            if (orderCount > 0)
+                                setOrderCount(orderCount - 1);
                         }}>-</Button>
                         <span> {orderCount} </span>
                         <Button variant="dark" onClick={() => {
-                            setOrderCount(orderCount + 1);
+
+                            if (orderCount < food.stockCount)
+                                setOrderCount(orderCount + 1);
+
                         }}>+</Button>
                     </p>
 
-                    <Button variant="primary">주문하기</Button>
+                    {
+                        food.stockCount == 0 ? <Button variant="secondary">품절</Button> : <Button variant="primary">주문하기</Button>
+                    }
                 </Col>
             </Row>
 
 
-            <Modal show={modalShow} onHide={()=>{setModalShow(false)}}>
+            <Modal show={modalShow} onHide={() => { setModalShow(false) }}>
                 <Modal.Header closeButton>
                     <Modal.Title>환영합니다~ </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>음식을 주문해주세요 ~ </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={()=>{setModalShow(false)}} >
+                    <Button variant="secondary" onClick={() => { setModalShow(false) }} >
                         Close
                     </Button>
                 </Modal.Footer>
